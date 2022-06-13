@@ -4,7 +4,6 @@ import math
 import statistics
 import matplotlib.pyplot as plt
 
-
 def encontrar_T(qo, tempo, A):
 
     i = qo.index(valor_max)  # iniciando i a partir do maior valor
@@ -22,28 +21,33 @@ def encontrar_T(qo, tempo, A):
 
 
 # carregamento da base de dados de 2a ordem
+
 dados = pd.read_excel("dados2aordem.xlsx")
 
 tempo = dados["tempo"].tolist()  # transformando os dados em duas listas
 qo = dados["qo"].tolist()
 
 # o valor de "A" foi encontrado obtendo-se a moda dos valores da lista qo. Ou seja, pegamos o valor que mais se repete. Arrendondamos os valores para 2 casas decimais para isso.
+
+
 A = statistics.mode(round(dados["qo"], 2))
 
 # A = 1 #Também pode considerar a acomodação do sistema em 1
 
-#print(f"Acomodação do sistema em {A}")
+print(f"Acomodação do sistema em {A}")
 
 valor_max = max(qo)
 
-#print(f"Valor máximo = {valor_max}")
+print(f"Valor máximo = {valor_max}")
 
 # o valor de "a" foi encontrado pegando o maior valor da lista qo e subtraindo o valor de "A".
 a = valor_max - A
 
+print(f"a = {a}")
+
 T = encontrar_T(qo, tempo, A)
 
-#print(f"T = {T}")
+print(f"T = {T}")
 
 ζ = math.sqrt(1 / ((math.pi/np.log(a/A))**2 + 1))  # Encontrando ζ
 
@@ -58,5 +62,5 @@ plt.figure(figsize=(16, 8))
 plt.plot(tempo, qo)
 plt.title("Resposta do Sistema")
 plt.grid()
-#plt.show()
-plt.savefig("resposta_do_sistema.png")
+plt.show()
+#plt.savefig("resposta_do_sistema.png")
